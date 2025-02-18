@@ -1,0 +1,58 @@
+# use the epslatex terminal to generate the plot, the arguments are:
+# standalone: generates a .tex that can be compiled by itself
+# color:      enable colors
+# solid:      draw all lines in the plots a solid lines (overridding
+#             dashed lines)
+# header      "\\usepackage{amsmath,amssymb}": LaTex packages to use
+# 14:         fontsize used for LaTeX, possible options are 8, 9, 14,
+#             17, 20 (size<size>.clo file should exist e.g. 
+#             /opt/local/share/texmf-texlive/tex/latex/extsizes/size14.clo)
+set terminal epslatex standalone color solid \
+    header "\\usepackage{amsmath,amssymb}" 12
+
+
+# set the name of the .tex output file
+set output 'conv_ho.tex'
+
+# set formats for the labels on the x- and y-axis
+#set format x '10\textsuperscript{%L}'
+set format y '10\textsuperscript{%L}'
+#set format y '%1.0e'
+#set format y '%h'
+
+set ylabel '$\max_k |u_k-u_\text{exact}|$'  rotate by 90 offset 3
+#set y2label '$\tau$' rotate by 0 offset -1
+#set ylabel '$\dfrac{\Delta t_\text{crit}U}{R}$' rotate by 0 offset -1
+#set ylabel 'Delta t_{crit}'
+set xlabel '$p$'
+
+# set left and right margins of the plot: useful if a label falls outside
+# the plot
+set lmargin 8
+#set rmargin 2
+
+# set the size of the canvas
+#set size 2.8/3.0,3.4/3.0
+#set size ratio -1
+#set size 1.05,1
+
+# set the 
+set xrange [0:21]
+set yrange [1e-14:10]
+
+
+# make a loglog plot
+#set logscale xy 10
+set log y #10
+
+
+
+set key right top reverse Left
+#set y2tics
+#set y2range [0:]
+plot \
+ "error_ho_2x2.txt" using 1:2 title 'mesh $2\times 2$' w l lw 2, \
+ "error_ho_4x4.txt" using 1:2 title 'mesh $4\times 4$' w l lw 2, \
+ "error_ho_8x8.txt" using 1:2 title 'mesh $8\times 8$' w l lw 2, \
+ "error_ho_64x64.txt" using 1:2 title 'mesh $64\times 64$' w l lw 2
+#pause -1
