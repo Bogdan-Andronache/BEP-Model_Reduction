@@ -52,7 +52,7 @@ def update_input_file(alpha_value):
 def automate_poisson1():
     alpha = 0.1  # Start value
 
-    while alpha <= 100.0:
+    while alpha <= 10.0:
         update_input_file(alpha)  # Update the input.txt file
 
         focus_terminal()  # Bring the terminal to the foreground

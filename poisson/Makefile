@@ -26,7 +26,6 @@ programs: $(MAINP)
 tags: $(SRC)
 	ctags --fortran-kinds=+i $(SRC) $(EXTRATAGSSRC)
 
-poisson1.o: poisson_functions.o
 poisson1: $(OBJS) poisson1.o
 	$(FC) $(FFLAGS) -o $@ poisson1.o $(OBJS) $(LIBS)
 

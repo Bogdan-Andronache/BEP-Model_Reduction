@@ -14,7 +14,7 @@ def plot_data(txt_files):
         size = int(np.sqrt(data.shape[0]))
         data = data.reshape((size, size))
         data = np.flipud(data)
-        data = np.rot90(data, k=-1)
+        data = np.rot90(data, k=1)
 
         # Set vmin and vmax based on the data's min and max values
         vmin, vmax = data.min(), data.max()

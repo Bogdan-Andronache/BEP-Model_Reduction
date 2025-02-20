@@ -27,7 +27,7 @@ def plot_live_data():
         size = int(np.sqrt(data.shape[0]))
         data = data.reshape((size, size))
         data = np.flipud(data)
-        data = np.rot90(data, k=-1)
+        data = np.rot90(data, k=1)
         
         vmin, vmax = np.min(data), np.max(data)  # Adjust color scale dynamically
         cax.set_norm(Normalize(vmin=vmin, vmax=vmax))
