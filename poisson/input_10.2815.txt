@@ -1,0 +1,3 @@
+&comppar
+alpha = 10.2815
+/

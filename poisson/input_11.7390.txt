@@ -1,0 +1,3 @@
+&comppar
+alpha = 11.7390
+/

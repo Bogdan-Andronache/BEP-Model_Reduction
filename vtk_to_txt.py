@@ -37,15 +37,12 @@ def main():
 
     # Pattern to match files like sol 0.10.vtk, sol 1.00.vtk, ..., sol 10.00.vtk
     pattern = r"sol  (\d+(\.\d{1,2})?)\.vtk"
-    vtk_files = sorted(
-        [f for f in os.listdir(input_folder) if re.match(pattern, f)],
-        key=lambda x: float(re.search(pattern, x).group(1))  # Sort by numeric value
-    )
+    vtk_files = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f))]
 
     for file_name in vtk_files:
         vtk_file = os.path.join(input_folder, file_name)
         # Remove space between 'sol' and number in the output filename
-        txt_file = os.path.join(output_folder, file_name.replace(" ", "").replace(".vtk", ".txt"))
+        txt_file = os.path.join(output_folder, file_name.replace(".vtk", ".txt"))
         
         try:
             scalar_values = read_vtk_file(vtk_file)

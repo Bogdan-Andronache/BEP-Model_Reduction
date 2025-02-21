@@ -3,13 +3,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 import time
+import re
+
+def extract_number(filename):
+    match = re.search(r"sol\s*(\d+\.\d{4})\.txt", filename)  # Match "solX.XXXX.txt"
+    return float(match.group(1)) if match else float('inf')
 
 def plot_live_data():
     output_folder = "Data/Txt"
     
-    sol_numbers = [f"{i:.2f}" for i in np.arange(0.1, 100.01, 0.1)]  # Generate file names from 0.10 to 100.00
-    txt_files = [os.path.join(output_folder, f"sol{num}.txt") for num in sol_numbers]
-    txt_files = [f for f in txt_files if os.path.exists(f)]  # Filter existing files
+    txt_files = [f for f in os.listdir(output_folder) if os.path.isfile(os.path.join(output_folder, f))]
+    txt_files = sorted(txt_files, key=extract_number)
     
     if not txt_files:
         print("No valid files to display.")
@@ -23,6 +27,7 @@ def plot_live_data():
     ax.set_yticks([])
     
     for txt_file in txt_files:
+        txt_file = output_folder + "/" + txt_file
         data = np.loadtxt(txt_file)
         size = int(np.sqrt(data.shape[0]))
         data = data.reshape((size, size))

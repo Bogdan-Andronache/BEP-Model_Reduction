@@ -69,8 +69,8 @@ program poisson1
    coefficients=coefficients )
  call add_effect_of_essential_to_rhs ( problem, sysmatrix, sol, rhsd )
  call solve_system_ma57 ( sysmatrix, rhsd, sol )
- print *, sol%u(subscript%s)
- write(filename, '(a,f6.2,a)') 'sol', alpha, '.vtk'
+ !print *, sol%u(subscript%s)
+ write(filename,'(A,F7.4,A)') 'sol', alpha, '.vtk'
  call write_scalar_vtk(mesh, problem, filename, dataname = 'u',sysvector=sol)
 ! delete all data including all allocated memory
  call delete ( problem )
