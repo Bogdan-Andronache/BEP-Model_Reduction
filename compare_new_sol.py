@@ -7,10 +7,10 @@ def plot_live_data():
     output_folder = "Data/Txt"
     
     values = [0, 14.0402, 16.4948, 17.2618, 18.8727, 19.3329]
-    nr = values[5]
-    #nr = 3.7614
+    nr = values[1]
+    #nr = 4.0683
     # Load the 'new_sol.npy' file and reshape it to (41, 41)
-    pred_path = f"pred{nr}.npy"
+    pred_path = f"pred.npy"
     new_sol = np.load(pred_path).reshape((41, 41))
     
     sol_path = f"sol{nr}.txt"
@@ -22,8 +22,6 @@ def plot_live_data():
     sol_data = np.loadtxt(sol_file)
     size = int(np.sqrt(sol_data.shape[0]))
     sol_data = sol_data.reshape((size, size))
-    sol_data = np.flipud(sol_data)
-    sol_data = np.rot90(sol_data, k=1)
     
     # Flip and rotate new_sol to match the orientation of sol_data
     new_sol = np.flipud(new_sol)

@@ -1,0 +1,10 @@
+&comppar
+  outputfile = 'sol_18.0_16.0.vtk'    ! name of the output file
+  delta = 18.0               ! delta coefficient
+  gamma = 16.0               ! gamma coefficient
+  nx = 20                   ! number of elements in x-direction
+  ny = 20                   ! number of elements in y-direction
+  eps = 1e-9                ! accuracy in iteration
+  nPicard = 10,             ! number of Picard iterations before Newton-Raphson
+  itermax = 100             ! maximum iterations
+/

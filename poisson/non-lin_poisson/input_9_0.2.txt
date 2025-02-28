@@ -1,0 +1,11 @@
+
+&comppar
+outputfile = 'sol_9_0.2.vtk'
+delta = 9.0
+gamma = 0.2
+nx = 20
+ny = 20
+eps = 1e-9
+nPicard = 10,
+itermax = 100
+/

@@ -20,7 +20,7 @@ train_snap, test_snap = snapshots[:split_idx], snapshots[split_idx:]
 train_param, test_param = param[:split_idx], param[split_idx:]
 
 db = Database(train_param, train_snap)
-pod = POD('svd', rank=3)
+pod = POD('svd')
 
 rom = ROM(db, pod, GPR())
 rom.fit()

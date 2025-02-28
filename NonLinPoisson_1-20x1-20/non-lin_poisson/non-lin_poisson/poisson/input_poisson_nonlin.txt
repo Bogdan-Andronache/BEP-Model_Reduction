@@ -1,0 +1,17 @@
+! input file
+! non-linear Poisson problem on a unit square with Dirichlet 
+! boundary conditions
+! diffusion coefficient assumed to be 
+!     D = 1 + delta*u^2 + gamma*|\nabla u|
+! where delta and gamma are constants
+
+&comppar
+  outputfile = 'sol.vtk'    ! name of the output file
+  delta = 3.0               ! delta coefficient
+  gamma = 0.4               ! gamma coefficient
+  nx = 20                   ! number of elements in x-direction
+  ny = 20                   ! number of elements in y-direction
+  eps = 1e-9                ! accuracy in iteration
+  nPicard = 10,             ! number of Picard iterations before Newton-Raphson
+  itermax = 100             ! maximum interations
+/
